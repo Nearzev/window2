@@ -1,0 +1,25 @@
+{
+  "name": "window",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env MODE=production node ./config/build/esbuild-config.js",
+    "dev": "cross-env MODE=development node ./config/build/esbuild-config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "browserslist": [
+    "> 1%",
+    "not dead"
+  ],
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.15.10"
+  },
+  "dependencies": {
+    "jquery": "^3.6.1",
+    "slick-carousel": "^1.8.1"
+  }
+}
