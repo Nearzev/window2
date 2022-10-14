@@ -8254,7 +8254,7 @@
   };
 
   // src/js/modules/tabs.js
-  var tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = "block") => {
+  var tabs = ({ headerSelector, tabSelector, contentSelector, activeClass, display = "block" }) => {
     const header = document.querySelector(headerSelector);
     const tab = document.querySelectorAll(tabSelector);
     const content = document.querySelectorAll(contentSelector);
@@ -8463,9 +8463,25 @@
     changeModalState_default(modalState);
     ;
     modals();
-    tabs(".glazing_slider", ".glazing_block", ".glazing_content", "active");
-    tabs(".balcon_icons", ".balcon_icons_img", ".big_img > img", "do_image_more", "inline-block");
-    tabs(".decoration_slider", ".no_click", ".decoration_content > div > div", "after_click");
+    tabs({
+      headerSelector: ".glazing_slider",
+      tabSelector: ".glazing_block",
+      contentSelector: ".glazing_content",
+      activeClass: "active"
+    });
+    tabs({
+      headerSelector: ".balcon_icons",
+      tabSelector: ".balcon_icons_img",
+      contentSelector: ".big_img > img",
+      activeClass: "do_image_more",
+      display: "inline-block"
+    });
+    tabs({
+      headerSelector: ".decoration_slider",
+      tabSelector: ".no_click",
+      contentSelector: ".decoration_content > div > div",
+      activeClass: "after_click"
+    });
     forms_default(modalState);
     timer_default("#timer", deadline);
     images_default();
