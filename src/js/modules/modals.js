@@ -1,18 +1,23 @@
 const modals = () => {
-    function bindModal(triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) {
-        const   trigger = document.querySelectorAll(triggerSelector),
-                modal = document.querySelector(modalSelector),
-                close = document.querySelector(closeSelector),
-                windows = document.querySelectorAll('[data-modal]');
+    const bindModal = ({triggerSelector, modalSelector, closeSelector, closeClickOverlay = true}) =>{
+        const triggers = document.querySelectorAll(triggerSelector);
+        const modal = document.querySelector(modalSelector);
+        const close = document.querySelector(closeSelector);
+        const windows = document.querySelectorAll('[data-modal]');
         
-        trigger.forEach(el => {
+        const closeModalWindow = (modal) => {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        };
+
+        triggers.forEach(el => {
             el.addEventListener('click', (e) => {
                 if (e.target) {
                     e.preventDefault();
                 }
 
                 windows.forEach(el => {
-                    el.style.display = 'none';
+                    closeModalWindow(el);
                 });
 
                 modal.style.display = 'block';
@@ -22,38 +27,69 @@ const modals = () => {
 
         close.addEventListener('click', () => {
             windows.forEach(el => {
-                el.style.display = 'none';
+                closeModalWindow(el);
             });
 
-            modal.style.display = 'none';
+            closeModalWindow(modal);
             document.body.style.overflow = '';
         });
 
         modal.addEventListener('click', (e) => {
             if (e.target === modal && closeClickOverlay === true) {
                 windows.forEach(el => {
-                    el.style.display = 'none';
+                    closeModalWindow(el);
                 });
 
-                modal.style.display = 'none';
+                closeModalWindow(modal);
                 document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.code === "Escape" && modal.style.display == 'block') {
+                closeModalWindow(modal);
             }
         });
     }  
 
-    function showModalByTime(selector, time) {
+    const showModalByTime = ((selector, time) => {
         setTimeout(() => {
             document.querySelector(selector).style.display = 'block';
-            document.body.style.overflow = '';
+            document.body.style.overflow = 'hidden';
         }, time);
-    }
+    });
 
-    bindModal('.popup_engineer_btn', '.popup_engineer', '.popup_engineer .popup_close');   
-    bindModal('.phone_link', '.popup', '.popup .popup_close');
-    bindModal('.popup_calc_btn', '.popup_calc', '.popup_calc_close');
-    bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close', false);
-    bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false);
-    showModalByTime('.popup', 60000);
+    bindModal({
+        triggerSelector: '.popup_engineer_btn', 
+        modalSelector: '.popup_engineer', 
+        closeSelector: '.popup_engineer .popup_close',
+        closeClickOverlay: true
+    });   
+    bindModal({
+        triggerSelector: '.phone_link', 
+        modalSelector: '.popup', 
+        closeSelector: '.popup .popup_close',
+        closeClickOverlay: true
+    });
+    bindModal({
+        triggerSelector: '.popup_calc_btn', 
+        modalSelector: '.popup_calc', 
+        closeSelector: '.popup_calc_close',
+        closeClickOverlay: true
+    });
+    bindModal({
+        triggerSelector: '.popup_calc_button',
+        modalSelector: '.popup_calc_profile', 
+        closeSelector: '.popup_calc_profile_close', 
+        closeClickOverlay: false
+    });
+    bindModal({ 
+        triggerSelector: '.popup_calc_profile_button', 
+        modalSelector: '.popup_calc_end', 
+        closeSelector: '.popup_calc_end_close', 
+        closeClickOverlay: false
+    });
+    // showModalByTime('.popup', 60000);
 };                            
 
-export default modals;
+export  {modals};
