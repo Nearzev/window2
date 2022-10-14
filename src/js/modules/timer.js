@@ -1,12 +1,6 @@
 const timer = (id, deadline) => {
 
-    const addZero = (num) => {
-        if (num <= 9) {
-            return `0${num}`;
-        } else {
-            return num;
-        }
-    };
+    const addZero = num => num <= 9 ?  `0${num}` :  num;
 
     const getTimeRemaining = (endtime) => {
         const   time = Date.parse(endtime) - Date.parse(new Date()),
@@ -16,11 +10,7 @@ const timer = (id, deadline) => {
                 days = Math.floor(time/1000/60/60/24);
 
         return {
-            'total': time,
-            'days': days,
-            'hours': hours,
-            'minutes': minutes,
-            'seconds': seconds
+            'total': time, days, hours, minutes, seconds
         };
     };
 
