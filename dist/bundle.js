@@ -8417,7 +8417,6 @@
     };
     setClock(id, deadline);
   };
-  var timer_default = timer;
 
   // src/js/modules/images.js
   var images = () => {
@@ -8430,7 +8429,7 @@
     imgPopup.appendChild(bigImage);
     workSection.addEventListener("click", (e) => {
       e.preventDefault();
-      let target = e.target;
+      const target = e.target;
       if (target && target.classList.contains("preview")) {
         imgPopup.style.display = "flex";
         const path = target.parentNode.getAttribute("href");
@@ -8444,9 +8443,7 @@
         document.body.style.overflow = "";
       }
     });
-    ;
   };
-  var images_default = images;
 
   // src/js/main.js
   window.addEventListener("DOMContentLoaded", () => {
@@ -8476,8 +8473,8 @@
       activeClass: "after_click"
     });
     forms(modalState);
-    timer_default("#timer", deadline);
-    images_default();
+    timer("#timer", deadline);
+    images();
   });
 })();
 /*!
