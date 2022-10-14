@@ -15,7 +15,7 @@ const images = () => {
     workSection.addEventListener('click', (e) => {
         e.preventDefault();
 
-        let target = e.target;
+        const target = e.target;
 
         if (target && target.classList.contains('preview')) {
             imgPopup.style.display = 'flex';
@@ -31,6 +31,6 @@ const images = () => {
             document.body.style.overflow = '';
         }
     });
-;};
+};
 
-export default images;
+export  {images} ;
