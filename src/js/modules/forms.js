@@ -14,7 +14,7 @@ const forms = (state) => {
 
     const postData = async (url, data) => {
         document.querySelector('.status').innerHTML = message.loading;
-        let res = await fetch(url, {
+        const res = await fetch(url, {
             method: "POST",
             body: data,
         });
@@ -32,7 +32,7 @@ const forms = (state) => {
         el.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            let statusMessage = document.createElement('div');
+            const statusMessage = document.createElement('div');
             statusMessage.classList.add('status');
             el.appendChild(statusMessage);
 
@@ -60,4 +60,4 @@ const forms = (state) => {
     });
 };
 
-export default forms;
+export  {forms};
