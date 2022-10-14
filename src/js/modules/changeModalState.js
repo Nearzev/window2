@@ -19,7 +19,7 @@ const changeModalState = (state) => {
                         break;
                     case 'INPUT':
                         if (el.getAttribute('type') === 'checkbox') {
-                            i === 0 ? state[prop] = "Холодное" : state[prop] = 'Теплое';
+                            state[prop] = i === 0 ?  "Холодное" :  'Теплое';
                             elem.forEach((box, j) => {
                                 box.checked = false;
                                 if (i == j) {
@@ -45,4 +45,4 @@ const changeModalState = (state) => {
     bindActionToElems('change', windowProfile, 'profile');
 };
 
-export default changeModalState;
+export  {changeModalState};
