@@ -1,19 +1,19 @@
 const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display = 'block') => {
-    const   header = document.querySelector(headerSelector),
-            tab = document.querySelectorAll(tabSelector),
-            content = document.querySelectorAll(contentSelector);
+    const header = document.querySelector(headerSelector);
+    const tab = document.querySelectorAll(tabSelector);
+    const content = document.querySelectorAll(contentSelector);
 
-    function hidetabContent() {
-        content.forEach(el => {
-            el.style.display = 'none';
+    const hidetabContent = () => {
+        content.forEach(card => {
+            card.style.display = 'none';
         });
 
-        tab.forEach(el => {
-            el.classList.remove(activeClass);
+        tab.forEach(tab => {
+            tab.classList.remove(activeClass);
         })
     }
 
-    function shoowTabContent(i = 0) {
+    const shoowTabContent = (i = 0) => {
         content[i].style.display = display;
         tab[i].classList.add(activeClass);
     }
@@ -37,4 +37,4 @@ const tabs = (headerSelector, tabSelector, contentSelector, activeClass, display
     });
 };
 
-export default tabs;
+export  {tabs};
